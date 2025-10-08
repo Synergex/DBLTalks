@@ -1,0 +1,34 @@
+public subroutine update_records
+
+    record customer_rec
+        id             ,a5
+        first_name     ,a10
+        last_name      ,a10
+        phone_number   ,a10
+        status         ,a10
+    endrecord
+
+    record
+        custfile ,i4
+    endrecord
+
+proc
+    
+    open(custfile, u:i, "customer")
+
+    repeat
+    begin
+        if (customer_rec.id == "00001")
+        begin
+            customer_rec.status = "NONACTIVE"
+
+            write(custfile, customer_rec)
+        end
+        reads(custfile, customer_rec) [eof=done]
+    end
+
+done,
+    close custfile
+    stop
+
+endsubroutine

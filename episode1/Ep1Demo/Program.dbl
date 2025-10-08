@@ -1,0 +1,11 @@
+main
+
+proc
+    xcall create_isam
+    xcall add_records 
+    ;xcall read_records
+    ;xcall update_records
+    ;xcall delete_records
+    stop
+    
+endmain

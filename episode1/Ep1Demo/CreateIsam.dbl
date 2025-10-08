@@ -1,0 +1,12 @@
+public subroutine create_isam
+
+    record
+        keyspecs ,[2]a25         ,"start=1, length=5, dups" ; Id
+        &                        ,"start=16, length=10, dups" ; Partial key on ID prefix
+    endrecord
+
+proc
+    xcall isamc("customer", 45, 2, keyspecs)
+    stop
+
+endsubroutine
