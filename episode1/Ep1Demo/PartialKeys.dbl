@@ -1,0 +1,13 @@
+public subroutine read_partial
+
+    record customer_rec
+        id             ,a5
+        first_name     ,a10
+        last_name      ,a10
+        phone_number   ,a10
+        status         ,a10
+    endrecord
+
+proc
+
+endsubroutine

@@ -1,0 +1,43 @@
+public subroutine read_records
+
+    record customer_rec
+        id             ,a5
+        first_name     ,a10
+        last_name      ,a10
+        phone_number   ,a10
+        status         ,a10
+    endrecord
+
+    record
+        custfile ,i4
+        termch   ,i4
+        partial_key , a10
+    endrecord
+
+proc
+
+    open(custfile, i:i, "customer")
+    open(termch, o, "tt:")
+    
+    partial_key = ("Smi") ; Partial key to change
+    writes(termch, partial_key)
+
+    find(custfile, %atrim(partial_key), KEYNUM:1) 
+    reads(custfile, customer_rec) [eof=done, err=done]
+
+    writes(termch, "Customer ID: " + customer_rec.id)
+    writes(termch, "Name: " + customer_rec.first_name + " " + customer_rec.last_name)
+
+    goto done
+
+done,
+    close custfile
+    close termch
+    stop
+
+not_found,
+    writes(termch, "No customer found with partial last name: " + partial_key)
+    close custfile
+    close termch
+    stop
+endsubroutine

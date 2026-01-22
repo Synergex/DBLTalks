@@ -1,0 +1,63 @@
+public subroutine add_records
+    
+    record customer_rec
+        id             ,a5
+        first_name     ,a10
+        last_name      ,a10
+        phone_number   ,a10
+        status         ,a10
+    endrecord
+
+    record
+        custfile ,i4
+    endrecord
+
+proc
+    ; Open the ISAM file for input/output
+    open(custfile, u:i, "customer")
+
+    ; Add first record
+    customer_rec.id = "00001"
+    customer_rec.first_name   = "Alice"
+    customer_rec.last_name    = "Smith"
+    customer_rec.phone_number = "0987654321"
+    customer_rec.status = "ACTIVE"
+    store(custfile, customer_rec)
+
+    ; Add second record
+    customer_rec.id = "00002"
+    customer_rec.first_name   = "Bob"
+    customer_rec.last_name    = "Jones"
+    customer_rec.phone_number = "123456789"
+    customer_rec.status = "ACTIVE"
+    store(custfile, customer_rec)
+
+    ; Add third record
+    customer_rec.id = "00003"
+    customer_rec.first_name   = "Rick"
+    customer_rec.last_name    = "Smithers"
+    customer_rec.phone_number = "1111111111"
+    customer_rec.status = "ACTIVE"
+    store(custfile, customer_rec)
+
+    ; Add 4th record
+    customer_rec.id = "00004"
+    customer_rec.first_name   = "Rick"
+    customer_rec.last_name    = "Santos"
+    customer_rec.phone_number = "2222222"
+    customer_rec.status = "ACTIVE"
+    store(custfile, customer_rec)
+
+    ; Add 5th record
+    customer_rec.id = "00005"
+    customer_rec.first_name   = "Nick"
+    customer_rec.last_name    = "Flanders"
+    customer_rec.phone_number = "333333333"
+    customer_rec.status = "ACTIVE"
+    store(custfile, customer_rec)
+
+    ; Close the file
+    close custfile
+    stop
+
+endsubroutine
