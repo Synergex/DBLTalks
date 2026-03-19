@@ -9,16 +9,18 @@ This repository hosts the source code and supporting assets featured in the DBL 
 
 ## Repository Layout
 - `episode1/` - materials for Episode 1, including the `Ep1Demo.sln` solution and shared build settings in `Common.props`.
-- Future episodes will follow the same pattern, adding a new top-level directory for each release.
+- `episode2/` - materials for Episode 2, provided as individual source files that demonstrate `Select`, `Where`, `OrderBy`, `GroupBy`, joins, updates, and deletes against ISAM data.
 
 ## Episode Guide
 - **Episode 1: Basic I/O in Synergy DBL** - demonstrates basics of CRUD operations in Synergy DBL, setting the stage for future deep dives into file handling, error management, and coding patterns.
+- **Episode 2: Querying ISAM Data with the Select Class** - explores how the `Select` class brings SQL-like querying capabilities to ISAM data, building on the I/O fundamentals from Episode 1 with practical examples for filtering, sorting, grouping, updating, deleting, and joining records across files.
 
 ## Using the Samples
 1. Ensure you have a Synergy DBL development environment (Synergy/DE, the Visual Studio integration, or your preferred compiler toolchain).
 2. Clone or download this repository.
-3. Open the episode solution (for example, `episode1/Ep1Demo.sln`) in your IDE, or build via the Synergy command line tools.
-4. Review the accompanying code comments and adapt the samples to match your own learning goals.
+3. Open the episode solution for Episode 1 (for example, `episode1/Ep1Demo.sln`) in your IDE, or build via the Synergy command line tools.
+4. Not all examples are provided as solutions, so some samples must be built from the command line by running `dbl [source.dbl]`, then `dblink [source]`, and then `dbs [source]`.
+5. Review the accompanying code comments and adapt the samples to match your own learning goals.
 
 ## Contributing and Feedback
 If you discover an issue, spot a typo, or have an idea for future topics, feel free to open an issue or submit a pull request. We also welcome episode suggestions directly through the podcast feedback channels.
