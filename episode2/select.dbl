@@ -1,0 +1,41 @@
+import Synergex.SynergyDE.Select
+
+main
+
+record emp_rec
+    EmployeeID,     a5
+    FirstName,      a15
+    LastName,       a15
+    Department,     a12
+    Salary,         d8.2
+endrecord
+
+record
+    channel, i4         ; Channel for file access
+    fromObj, @From      ; From object for Select
+    selectObj, @Select
+endrecord
+
+proc
+    ; Open the employee file
+    open(channel=0, I:I, "employee.ism")
+
+    ; Create a From object for the employee file
+    fromObj = new From(channel, emp_rec)
+
+    ; Create a Select object with the From object
+    selectObj = new Select(fromObj)
+
+    ; Iterate over the selected records
+    foreach emp_rec in selectObj
+    begin
+        ; Process each record (e.g., display employee details)
+        Console.WriteLine( "ID: " + emp_rec.EmployeeID + 
+        &    ", FirstName: " + emp_rec.FirstName +
+        &    ", LastName: " + emp_rec.LastName + 
+        &    ", Department: " + emp_rec.Department + 
+        &    ", Salary: " + %string(emp_rec.Salary))
+    end
+
+    close channel
+end

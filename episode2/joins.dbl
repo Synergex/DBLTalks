@@ -1,0 +1,57 @@
+import Synergex.SynergyDE.Select
+
+main
+
+record emp_rec
+    EmployeeID,     a5
+    FirstName,      a15
+    LastName,       a15
+    Department,     a12
+    Salary,         d8.2
+endrecord
+
+record dep_rec
+    DepartmentName,     a12
+    ManagerFirst,       a12
+    ManagerLast,        a12
+    Location,           a15
+    Budget,             i8
+endrecord
+
+record
+    channelEmp,     i4
+    channelDep,     i4
+    joinselectObj,  @JoinSelect
+    fromEmp,        @From
+    fromDep,        @From
+    rowObj,         @Rows
+endrecord
+
+proc
+    ; Open the employee and department
+    open(channelEmp, I:I, "employee.ism")
+    open(channelDep, I:I, "department.ism")
+
+    ; Create from objects for both employee and department
+    fromEmp = new From(channelEmp, emp_rec)
+    fromDep = new From(channelDep, dep_rec)
+
+    ; Join both records (you may change InnerJoin for LeftJoin)
+    joinselectObj = new Select(fromEmp.InnerJoin(fromDep,
+        & (On)(emp_rec.Department == dep_rec.DepartmentName))).Join()
+
+    foreach rowObj in joinselectObj
+    begin
+        rowObj.fill(emp_rec) ; Fill employee record
+        rowObj.fill(dep_rec) ; Fill department record 
+
+        Console.WriteLine( "ID: " + emp_rec.EmployeeID + 
+        &    ", FirstName: " + emp_rec.FirstName +
+        &    ", LastName: " + emp_rec.LastName + 
+        &    ", Department Manager: " + dep_rec.ManagerFirst + dep_rec.ManagerLast +
+        &    ", Department Location: " + dep_rec.Location)
+    end
+
+    close channelDep
+    close channelEmp
+end
