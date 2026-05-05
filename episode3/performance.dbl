@@ -1,0 +1,22 @@
+import Synergex.SynergyDE.IOExtensions
+
+namespace Example
+    class HeavyProcessingIOHooks inherits IOHooks
+        public method HeavyProcessingIOHooks
+            ch, int
+            parent(ch)
+        proc
+
+        endmethod
+
+        protected method read_post_operation_hook, void
+            inout buffer, a
+            in flags, IOFlags
+            inout error, int
+        proc
+            ; Complex data processing
+            ; or time-consuming external API call
+            ;PerformComplexDataProcessing(buffer)
+        endmethod
+    endclass
+endnamespace

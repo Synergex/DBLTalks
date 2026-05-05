@@ -1,0 +1,27 @@
+import Synergex.SynergyDE.IOExtensions
+
+namespace Example
+    class LoggingIOHooks inherits IOHooks
+        public method LoggingIOHooks
+            ch, int
+            parent(ch)
+        proc
+        endmethod
+
+        protected method read_pre_operation_hook, void
+            in flags, IOFlags
+        proc
+            ; Custom logic before a read operation
+            Console.WriteLine("Pre-read hook: Starting read operation.")
+        endmethod
+
+        protected method read_post_operation_hook, void
+            inout buffer, a
+            in flags, IOFlags
+            inout error, int
+        proc
+            ; Custom logic after a read operation
+            Console.WriteLine("Post-read hook: Read operation completed.")
+        endmethod
+    endclass
+endnamespace
