@@ -1,0 +1,44 @@
+import System.Collections
+import Synergex.SynergyDE.IOExtensions
+
+namespace Example
+    class BufferedLoggingIOHooks inherits IOHooks
+        private const BUFFER_THRESHOLD, int, 100
+        protected logBuffer, @ArrayList
+        ; Other hook methods
+
+        public method BufferedLoggingIOHooks
+            ch, int
+            parent(ch)
+        proc
+
+        endmethod
+
+        protected method write_post_operation_hook, void
+            inout buffer, a
+            in flags, IOFlags
+            inout error, int
+        proc
+            ; Append log to buffer
+            logBuffer.Add(BuildLogEntry(buffer))
+            ; Periodically flush the buffer
+            if logBuffer.Count >= BUFFER_THRESHOLD then
+                FlushLogBuffer()
+            else
+                return
+        endmethod
+
+        private method BuildLogEntry, @a
+            buffer, a
+        proc
+            ;;format the log entry here and return it
+            mreturn (@a)buffer
+        endmethod
+
+        private method FlushLogBuffer, void
+        proc
+            ;;write out all of the entries from logBuffer and clear it
+        endmethod
+
+    endclass
+endnamespace

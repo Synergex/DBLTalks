@@ -1,0 +1,16 @@
+main
+    record
+        channel, int
+    record rec
+        somedata, a100
+proc
+    open(channel=0, i:i, "employee.ism")
+    new Example.BufferedLoggingIOHooks(channel)
+    
+    ; Perform read operations as usual
+    ; The hooks will automatically log messages before and after the read
+    reads(channel, rec)
+
+    close channel
+    channel = 0
+end
