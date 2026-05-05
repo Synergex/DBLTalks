@@ -10,10 +10,12 @@ This repository hosts the source code and supporting assets featured in the DBL 
 ## Repository Layout
 - `episode1/` - materials for Episode 1, including the `Ep1Demo.sln` solution and shared build settings in `Common.props`.
 - `episode2/` - materials for Episode 2, provided as individual source files that demonstrate `Select`, `Where`, `OrderBy`, `GroupBy`, joins, updates, and deletes against ISAM data.
+- `episode3/` - materials for Episode 3, provided as individual source files that demonstrate I/O Hooks, logging hooks, performance considerations, and a bonus buffer-handling example.
 
 ## Episode Guide
 - **Episode 1: Basic I/O in Synergy DBL** - demonstrates basics of CRUD operations in Synergy DBL, setting the stage for future deep dives into file handling, error management, and coding patterns.
 - **Episode 2: Querying ISAM Data with the Select Class** - explores how the `Select` class brings SQL-like querying capabilities to ISAM data, building on the I/O fundamentals from Episode 1 with practical examples for filtering, sorting, grouping, updating, deleting, and joining records across files.
+- **Episode 3: I/O Hooks in Synergy DBL** - dives into intercepting and extending standard I/O operations such as `READS` and `WRITEs` without changing core application logic. The episode walks through creating a custom `LoggingIOHooks` class, attaching hooks to file channels, using global hooks with `SYN_GLOBALHOOKS_OPEN`, applying hooks selectively by filename or open mode, and evaluating performance considerations for synchronous hook execution.
 
 ## Using the Samples
 1. Ensure you have a Synergy DBL development environment (Synergy/DE, the Visual Studio integration, or your preferred compiler toolchain).
